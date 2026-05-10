@@ -26,7 +26,10 @@ in*/
       enable = true;
     };
   };
-  
+  swapDevices = [{
+    device = "/var/lib/swapfile";
+    size = 16*1024; # 16 GiB
+  }];
   # Enable Flatpak support
   # services.flatpak.enable = true;
 
@@ -248,6 +251,7 @@ environment.etc."firefox/policies/policies.json".target = "librewolf/policies/po
     newsboat #terminal RSS feed reader
     seahorse #gnupg GUI
     #noctalia-shell
+    #android-tools
     ];
  
   hardware.bluetooth = {
