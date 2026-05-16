@@ -130,7 +130,7 @@ in*/
       ];
   };
 
-
+# Better latency for audio
   services.pipewire = {
      enable = true;
      pulse.enable = true;
@@ -239,7 +239,7 @@ environment.etc."firefox/policies/policies.json".target = "librewolf/policies/po
     grim #for screenshoots
     slurp #for screenshoots
     swappy #for screenshoots
-    nix-output-monitor
+    nix-output-monitor # for better update visuals
     unzip
     #sddm-astronaut #SDDM theme
     kdePackages.qtmultimedia #SDDM theme

@@ -449,10 +449,6 @@
           "enabled": true
         },
         {
-          "id": "focusedWindow",
-          "enabled": true
-        },
-        {
           "id": "cpuUsage",
           "enabled": true,
           "minimumWidth": true
@@ -461,6 +457,10 @@
           "id": "memUsage",
           "enabled": true,
           "minimumWidth": true
+        },
+        {
+          "id": "launcherButton",
+          "enabled": true
         }
       ],
       "centerWidgets": [
@@ -504,26 +504,26 @@
         }
       ],
       "spacing": 4,
-      "innerPadding": 4,
+      "innerPadding": 0,
       "bottomGap": 0,
       "transparency": 0,
-      "widgetTransparency": 0.65,
+      "widgetTransparency": 0.7,
       "squareCorners": false,
       "noBackground": false,
-      "maximizeWidgetIcons": false,
-      "maximizeWidgetText": false,
+      "maximizeWidgetIcons": true,
+      "maximizeWidgetText": true,
       "removeWidgetPadding": false,
-      "widgetPadding": 2,
+      "widgetPadding": 8,
       "gothCornersEnabled": false,
       "gothCornerRadiusOverride": false,
       "gothCornerRadiusValue": 12,
       "borderEnabled": false,
-      "borderColor": "primary",
+      "borderColor": "surfaceText",
       "borderOpacity": 1,
       "borderThickness": 2,
       "widgetOutlineEnabled": false,
       "widgetOutlineColor": "primary",
-      "widgetOutlineOpacity": 1,
+      "widgetOutlineOpacity": 0.2,
       "widgetOutlineThickness": 2,
       "fontScale": 1,
       "iconScale": 1,
@@ -533,7 +533,7 @@
       "openOnOverview": false,
       "visible": true,
       "popupGapsAuto": true,
-      "popupGapsManual": 0,
+      "popupGapsManual": 4,
       "maximizeDetection": false,
       "scrollEnabled": false,
       "scrollXBehavior": "column",
@@ -763,7 +763,14 @@
   "desktopWidgetGroups": [],
   "builtInPluginSettings": {
     "dms_settings_search": {
-      "trigger": "?"
+      "trigger": "?",
+      "enabled": false
+    },
+    "dms_sysmon": {
+      "enabled": false
+    },
+    "dms_settings": {
+      "enabled": false
     }
   },
   "clipboardEnterToPaste": false,

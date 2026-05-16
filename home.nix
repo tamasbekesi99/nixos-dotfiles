@@ -4,7 +4,7 @@ let
   dotfiles = "${config.home.homeDirectory}/nixos-dotfiles/config"; #The path to your portable config files
   create_symlink = path: config.lib.file.mkOutOfStoreSymlink path; #Create symlink to your .config
 
-  #Make sure to 'mkdir' theese folders in your portable config folder!!!
+  #Make sure to 'mkdir' these folders in your portable config folder!!!
   configs = {
     hypr = "hypr";
     nvim = "nvim";
@@ -58,25 +58,25 @@ imports =[
   };*/
 
  home.packages = with pkgs; [
-    neovim
-    fd
+    neovim #editor
+    fd # find
     ripgrep
-    fzf
-    tealdeer
-    eza
-    zoxide
-    bat
+    fzf #fuzzy
+    tealdeer #tldr
+    eza #better ls
+    zoxide #better cd
+    bat #better cat
     nil
     nixpkgs-fmt
     nodejs
     jq #for the quickshell json script in shell.qml
     gcc
-    nitch
+    nitch #neofetch like tool
     #rofi
-    fuzzel
-    app2unit
-    pcmanfm
-    nix-search-tv
+    fuzzel #app launcher
+    app2unit #for faster app launch, compared to uwsm
+    pcmanfm #GUI filemanager
+    nix-search-tv #with th bash script it is easy to serach for nix packages in the terminal
   ];
 
   dconf.settings = {
