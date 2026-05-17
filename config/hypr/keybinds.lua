@@ -15,8 +15,8 @@ local browser = "librewolf"
 --$menu = rofi -show drun
 --$menu = rofi -show drun -run-command "uwsm app -- {cmd}"
 --$menu = fuzzel "--launch-prefix=uwsm app --"
---$menu = fuzzel "--launch-prefix=app2unit --"
-local menu = "dms ipc call spotlight toggle"
+local menu = "fuzzel --launch-prefix=app2unit"
+--local menu = "dms ipc call spotlight toggle"
 local powermenu = "dms ipc call powermenu toggle"
 local reload_waybar = "pkill waybar; waybar &"
 local snip = "grim -g \"$(slurp)\" - | swappy -f -"
@@ -49,7 +49,7 @@ hl.bind(mainMod .. " + P", hl.dsp.exec_cmd(powermenu))
 --bind = $mainMod Alt, L, exec, hyprlock
 hl.bind(mainMod .. " + ALT + L", hl.dsp.exec_cmd("dms ipc call lock lock"))
 hl.bind(mainMod .. " + S", hl.dsp.exec_cmd(snip))
-hl.bind(mainMod .. " + TAB", hl.dsp.exec_cmd("dms ipc call hypr toggleOverview"))
+--hl.bind(mainMod .. " + TAB", hl.dsp.exec_cmd("dms ipc call hypr toggleOverview"))
 
 -- Move focus with mainMod + vim arrow keys
 hl.bind(mainMod .. " + l", hl.dsp.focus({ direction = "left" }))

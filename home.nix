@@ -15,6 +15,8 @@ let
     yazi = "yazi";
     DankMaterialShell ="DankMaterialShell";
     neomutt = "neomutt";
+    ashell = "ashell";
+    swaync = "swaync";
     #noctalia = "noctalia";
     #waypaper = "waypaper";
   };

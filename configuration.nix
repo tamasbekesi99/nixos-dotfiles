@@ -89,7 +89,7 @@ in*/
   };
   
   #Enable dank material shell
-  programs.dms-shell.enable = true;
+  #programs.dms-shell.enable = true;
 
   #For laptop power managment
   services.power-profiles-daemon.enable = true;
@@ -234,7 +234,9 @@ environment.etc."firefox/policies/policies.json".target = "librewolf/policies/po
     hyprlock # lockscreen
     hyprpolkitagent #polkit agent
     #awww #background image
-    #waypaper
+    swaynotificationcenter
+    hyprpaper #background image
+    ashell
     #hyprshot #for screenshoots
     grim #for screenshoots
     slurp #for screenshoots
