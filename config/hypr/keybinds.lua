@@ -35,7 +35,8 @@ hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 --bind = $mainMod, W, exec, [workspace 2] uwsm app -- $browser
 --bind = $mainMod, W, exec, uwsm app -- $browser
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("app2unit -- " .. browser))
-hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd("dms ipc call wallpaper next"))
+--hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd("dms ipc call wallpaper next"))
+hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd("wpaperctl next"))
 --bind = $mainMod Alt, W, exec, waypaper --random
 hl.bind(mainMod .. " + M", hl.dsp.exit())
 --bind = $mainMod, E, exec, [workspace 3] uwsm app -- $fileManager
@@ -45,9 +46,9 @@ hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("[workspace 4] app2unit -- thunderbir
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))
-hl.bind(mainMod .. " + P", hl.dsp.exec_cmd(powermenu))
+--hl.bind(mainMod .. " + P", hl.dsp.exec_cmd(powermenu))
 --bind = $mainMod Alt, L, exec, hyprlock
-hl.bind(mainMod .. " + ALT + L", hl.dsp.exec_cmd("dms ipc call lock lock"))
+hl.bind(mainMod .. " + ALT + L", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mainMod .. " + S", hl.dsp.exec_cmd(snip))
 --hl.bind(mainMod .. " + TAB", hl.dsp.exec_cmd("dms ipc call hypr toggleOverview"))
 

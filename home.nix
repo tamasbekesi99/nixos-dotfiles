@@ -8,17 +8,13 @@ let
   configs = {
     hypr = "hypr";
     nvim = "nvim";
-    #rofi = "rofi";
     fuzzel = "fuzzel";
     kitty = "kitty";
-    #quickshell = "quickshell";
     yazi = "yazi";
-    DankMaterialShell ="DankMaterialShell";
     neomutt = "neomutt";
     ashell = "ashell";
     swaync = "swaync";
-    #noctalia = "noctalia";
-    #waypaper = "waypaper";
+    wpaperd = "wpaperd";
   };
 in
 
@@ -28,6 +24,7 @@ imports =[
   ./modules/theme.nix
   ./modules/bash.nix
   ./modules/zoxide.nix
+  ./modules/nvf.nix
 ];
 
   home.username = "tommy";
@@ -47,17 +44,6 @@ imports =[
       gpg.format = "ssh";
     };
   };
-
- /* programs.chromium = {
-    enable = true;
-    package = pkgs.brave;
-    extensions = [
-      { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # uBlock Origin
-    ];
-    commandLineArgs = [
-      "--disable-features=WebRtcAllowInputVolumeAdjustment"
-    ];
-  };*/
 
  home.packages = with pkgs; [
     neovim #editor

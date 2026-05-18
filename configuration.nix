@@ -100,16 +100,7 @@ in*/
 
   nixpkgs.config.allowUnfree = true;
 
-#  hardware = {
-#    xone.enable = true;
-#    graphics = {
-#     enable = true;
-#     enable32Bit = true;
-#    };
-#  };
-
-#Steam
-
+  #Steam
   hardware.steam-hardware.enable = true;
 
   programs.steam = {
@@ -181,39 +172,6 @@ in*/
     ];
   };
 
-/*programs.firefox = {
-  enable = true;
-  package = pkgs.librewolf;
-  policies = {
-    DisableTelemetry = true;
-    DisableFirefoxStudies = true;
-    Preferences = {
-      "cookiebanners.service.mode.privateBrowsing" = 2; # Block cookie banners in private browsing
-      "cookiebanners.service.mode" = 2; # Block cookie banners
-      "privacy.donottrackheader.enabled" = true;
-      "privacy.fingerprintingProtection" = true;
-      "privacy.resistFingerprinting" = true;
-      "privacy.trackingprotection.emailtracking.enabled" = true;
-      "privacy.trackingprotection.enabled" = true;
-      "privacy.trackingprotection.fingerprinting.enabled" = true;
-      "privacy.trackingprotection.socialtracking.enabled" = true;
-    };
-    ExtensionSettings = {
-      "jid1-ZAdIEUB7XOzOJw@jetpack" = {
-        install_url = "https://addons.mozilla.org/firefox/downloads/latest/duckduckgo-for-firefox/latest.xpi";
-        installation_mode = "force_installed";
-      };
-      "uBlock0@raymondhill.net" = {
-        install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
-        installation_mode = "force_installed";
-      };
-    };
-  };
-};
-
-environment.etc."firefox/policies/policies.json".target = "librewolf/policies/policies.json";
-*/
-
   environment.systemPackages = with pkgs; [
     wget
     librewolf #web browser
@@ -233,11 +191,10 @@ environment.etc."firefox/policies/policies.json".target = "librewolf/policies/po
     thunderbird
     hyprlock # lockscreen
     hyprpolkitagent #polkit agent
-    #awww #background image
+    wpaperd #wallpaper
+    wallrizz
     swaynotificationcenter
-    hyprpaper #background image
     ashell
-    #hyprshot #for screenshoots
     grim #for screenshoots
     slurp #for screenshoots
     swappy #for screenshoots
@@ -245,8 +202,6 @@ environment.etc."firefox/policies/policies.json".target = "librewolf/policies/po
     unzip
     #sddm-astronaut #SDDM theme
     kdePackages.qtmultimedia #SDDM theme
-    #quickshell
-    ani-cli #anime in the terminal
     ffmpeg #codecs
     yt-dlp #ani-cli optional
     neomutt #terminal email program

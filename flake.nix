@@ -10,16 +10,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-   /* noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.noctalia-qs.follows = "noctalia-qs";
-    };
-
-    noctalia-qs = {
-      url = "github:noctalia-dev/noctalia-qs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    }; */
+    nvf.url = "github:notashelf/nvf";
 
     silentSDDM = {
       url = "github:uiriansan/SilentSDDM";
@@ -28,13 +19,14 @@
 
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, silentSDDM, ... }: {
+  outputs = inputs @ { self, nixpkgs, home-manager, silentSDDM, nvf, ... }: {
     nixosConfigurations.hyprland-btw = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         ./configuration.nix
         home-manager.nixosModules.home-manager
         silentSDDM.nixosModules.default
+        nvf.nixosModules.default
         {
           programs.silentSDDM = {
             enable = true;

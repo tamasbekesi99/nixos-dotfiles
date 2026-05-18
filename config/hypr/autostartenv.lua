@@ -31,8 +31,9 @@
 
 hl.on("hyprland.start", function()
     hl.exec_cmd("udiskie &")
-    hl.exec_cmd("app2unit -- hyprpaper &")
     hl.exec_cmd("swaync &")
+    --hl.exec_cmd("wpaperd -d &")
     hl.exec_cmd("ashell &")
+    hl.exec_cmd("tailscale systray")
 end)
 
