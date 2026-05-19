@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   home.packages = with pkgs; [
     adwaita-icon-theme
     #papirus-icon-theme
@@ -15,7 +17,7 @@
     name = "Bibata-Modern-Classic";
     size = 24;
   };
-  
+
   gtk.gtk4.theme = null;
 
   gtk = {
@@ -28,7 +30,7 @@
 
     iconTheme = {
       package = pkgs.flat-remix-icon-theme;
-      name = "Flat-Remix-Teal-Dark";
+      name = "Flat-Remix-Blue-Dark";
     };
 
     font = {
@@ -41,7 +43,7 @@
 
   #Env var managed by UWSM
   xdg.configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
-  
+
   home.sessionVariables = {
     XCURSOR_THEME = "Bibata-Modern-Classic";
     XCURSOR_SIZE = "36";
@@ -49,6 +51,6 @@
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
     QT_QPA_PLATFORMTHEME = "gtk3";
     QT_QPA_PLATFORMTHEME_QT6 = "gtk3";
-    QT_QPA_PLATFORM = "wayland"; 
+    QT_QPA_PLATFORM = "wayland";
   };
 }

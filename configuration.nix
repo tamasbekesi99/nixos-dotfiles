@@ -1,17 +1,23 @@
-{ config, lib, pkgs, ... }:
-
-/*let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+/*
+  let
   sddm-astronaut = pkgs.sddm-astronaut.override {
   embeddedTheme = "japanese_aesthetic"; #for overriding astronaut theme
-    #themeConfig = pathtoconfig; 
+    #themeConfig = pathtoconfig;
   };
-in*/
-
+in
+*/
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./modules/nvf.nix
+  ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -26,68 +32,70 @@ in*/
       enable = true;
     };
   };
-  swapDevices = [{
-    device = "/var/lib/swapfile";
-    size = 16*1024; # 16 GiB
-  }];
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 16 * 1024; # 16 GiB
+    }
+  ];
   # Enable Flatpak support
   # services.flatpak.enable = true;
 
   #BTRFS options
 
   fileSystems = {
-    "/".options = [ "compress=zstd" ];
-    "/home".options = [ "compress=zstd" ];
-    "/nix".options = [ "compress=zstd" "noatime" ];
+    "/".options = ["compress=zstd"];
+    "/home".options = ["compress=zstd"];
+    "/nix".options = ["compress=zstd" "noatime"];
   };
 
   networking.hostName = "hyprland-btw"; # Define your hostname.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
- 
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+
   # Enable the service and the firewall
   services.tailscale = {
     enable = true;
     extraSetFlags = ["--netfilter-mode=nodivert"]; # #For not to bypass firewall rules
-    extraDaemonFlags = [ "--no-logs-no-support" ]; # Disable logging and telemetry
+    extraDaemonFlags = ["--no-logs-no-support"]; # Disable logging and telemetry
   };
   networking.nftables.enable = true;
   networking = {
     firewall = {
       enable = true;
       # Always allow traffic from your Tailscale network
-      trustedInterfaces = [ "tailscale0" ];
+      trustedInterfaces = ["tailscale0"];
       # Allow DHCP for libvirtd
-      interfaces.virbr0.allowedUDPPorts = [ 53 67 ];
+      interfaces.virbr0.allowedUDPPorts = [53 67];
       # Allow the Tailscale UDP port through the firewall
-      allowedUDPPorts = [ config.services.tailscale.port ];
+      allowedUDPPorts = [config.services.tailscale.port];
     };
     # Enable NAT for traffic from the virbr0 interface
     nat.enable = true;
-    nat.internalInterfaces = [ "virbr0" ];
+    nat.internalInterfaces = ["virbr0"];
   };
 
   # Force tailscaled to use nftables (Critical for clean nftables-only systems)
   # This avoids the "iptables-compat" translation layer issues.
-  systemd.services.tailscaled.serviceConfig.Environment = [ 
-    "TS_DEBUG_FIREWALL_MODE=nftables" 
+  systemd.services.tailscaled.serviceConfig.Environment = [
+    "TS_DEBUG_FIREWALL_MODE=nftables"
   ];
 
-  # Optimization: Prevent systemd from waiting for network online 
+  # Optimization: Prevent systemd from waiting for network online
   # (Optional but recommended for faster boot with VPNs)
-  systemd.network.wait-online.enable = false; 
+  systemd.network.wait-online.enable = false;
   boot.initrd.systemd.network.wait-online.enable = false;
 
   environment.variables.EDITOR = "nvim";
 
   time.timeZone = "Europe/Budapest";
-  
+
   #Hyprland with USWM
   programs.hyprland = {
     enable = true;
     withUWSM = true;
     xwayland.enable = true;
   };
-  
+
   #Enable dank material shell
   #programs.dms-shell.enable = true;
 
@@ -112,45 +120,47 @@ in*/
     extraCompatPackages = [pkgs.proton-ge-bin];
   };
 
+  programs.gamemode.enable = true;
+
   programs.gamescope = {
-      enable = true;
-      capSysNice = true;
-      args = [
-        "--rt"
-        "--expose-wayland"
-      ];
+    enable = true;
+    capSysNice = true;
+    args = [
+      "--rt"
+      "--expose-wayland"
+    ];
   };
 
-# Better latency for audio
+  # Better latency for audio
   services.pipewire = {
-     enable = true;
-     pulse.enable = true;
-     alsa.enable = true;
-     alsa.support32Bit = true;
-     jack.enable = true;
-     extraConfig.pipewire."92-low-latency" = {
-        "context.properties" = {
-          "default.clock.rate" = 48000;
-          "default.clock.quantum" = 256;
-          "default.clock.min-quantum" = 256;
-          "default.clock.max-quantum" = 256;
-        };
+    enable = true;
+    pulse.enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    jack.enable = true;
+    extraConfig.pipewire."92-low-latency" = {
+      "context.properties" = {
+        "default.clock.rate" = 48000;
+        "default.clock.quantum" = 256;
+        "default.clock.min-quantum" = 256;
+        "default.clock.max-quantum" = 256;
       };
-     extraConfig.pipewire-pulse."92-low-latency" = {
-       context.modules = [
-          {
-            name = "libpipewire-module-protocol-pulse";
-            args = {
-              pulse.min.req = "256/48000";
-              pulse.default.req = "256/48000";
-              pulse.max.req = "256/48000";
-              pulse.min.quantum = "256/48000";
-              pulse.max.quantum = "256/48000";
-            };
-          }
-        ];
-      };
-   };
+    };
+    extraConfig.pipewire-pulse."92-low-latency" = {
+      context.modules = [
+        {
+          name = "libpipewire-module-protocol-pulse";
+          args = {
+            pulse.min.req = "256/48000";
+            pulse.default.req = "256/48000";
+            pulse.max.req = "256/48000";
+            pulse.min.quantum = "256/48000";
+            pulse.max.quantum = "256/48000";
+          };
+        }
+      ];
+    };
+  };
 
   services.libinput.enable = true;
 
@@ -166,7 +176,7 @@ in*/
   #user
   users.users.tommy = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "libvirtd" ]; # Enable ‘sudo’ for the user.
+    extraGroups = ["wheel" "networkmanager" "libvirtd"]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       tree
     ];
@@ -191,9 +201,9 @@ in*/
     thunderbird
     hyprlock # lockscreen
     hyprpolkitagent #polkit agent
-    wpaperd #wallpaper
-    wallrizz
+    awww #wallpaper
     swaynotificationcenter
+    fastfetch
     ashell
     grim #for screenshoots
     slurp #for screenshoots
@@ -209,8 +219,8 @@ in*/
     seahorse #gnupg GUI
     #noctalia-shell
     #android-tools
-    ];
- 
+  ];
+
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
@@ -225,23 +235,23 @@ in*/
   };
 
   services.blueman.enable = true; # Bluetooth Support
-  qt.enable =true; #Needed for theming
+  qt.enable = true; #Needed for theming
 
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
     nerd-fonts.iosevka
   ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   #services.gnome.gnome-keyring.enable = true;
 
-  programs.gnupg.agent ={
+  programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
   };
 
-  services.openssh =  {
+  services.openssh = {
     enable = true;
     settings = {
       PasswordAuthentication = false;
@@ -251,5 +261,4 @@ in*/
   };
 
   system.stateVersion = "25.05"; # Do NOT change
-
 }

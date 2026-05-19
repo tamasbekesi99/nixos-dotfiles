@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
-let
+{
+  config,
+  pkgs,
+  ...
+}: let
   dotfiles = "${config.home.homeDirectory}/nixos-dotfiles/config"; #The path to your portable config files
   create_symlink = path: config.lib.file.mkOutOfStoreSymlink path; #Create symlink to your .config
 
@@ -9,35 +11,31 @@ let
     hypr = "hypr";
     nvim = "nvim";
     fuzzel = "fuzzel";
+    fastfetch = "fastfetch";
     kitty = "kitty";
     yazi = "yazi";
     neomutt = "neomutt";
     ashell = "ashell";
     swaync = "swaync";
-    wpaperd = "wpaperd";
   };
-in
-
-{
-
-imports =[
-  ./modules/theme.nix
-  ./modules/bash.nix
-  ./modules/zoxide.nix
-  ./modules/nvf.nix
-];
+in {
+  imports = [
+    ./modules/theme.nix
+    ./modules/bash.nix
+    ./modules/zoxide.nix
+  ];
 
   home.username = "tommy";
   home.homeDirectory = "/home/tommy";
   home.stateVersion = "25.11";
-  
+
   programs.git = {
     enable = true;
     signing = {
-      key = "${config.home.homeDirectory}/.ssh/id_ed25519.pub";  # Path to your public key
-      signByDefault = true;  # Sign all commits by default
+      key = "${config.home.homeDirectory}/.ssh/id_ed25519.pub"; # Path to your public key
+      signByDefault = true; # Sign all commits by default
     };
-    settings = { 
+    settings = {
       user.name = "tamasbekesi99";
       user.email = "bekesitommy@gmail.com";
       init.defaultBranch = "main";
@@ -45,7 +43,7 @@ imports =[
     };
   };
 
- home.packages = with pkgs; [
+  home.packages = with pkgs; [
     neovim #editor
     fd # find
     ripgrep
@@ -89,21 +87,21 @@ imports =[
         "images/webp" = ["imv.desktop"];
         "images/svg+xml" = ["imv.desktop"];
         "images/jpeg" = ["imv.desktop"];
-       };
-     };
+      };
+    };
     portal = {
       enable = true;
-      extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
-      configPackages = [ pkgs.hyprland ];
+      extraPortals = [pkgs.xdg-desktop-portal-hyprland];
+      configPackages = [pkgs.hyprland];
     };
 
     #create symlink to dot config files for portability
-    configFile = builtins.mapAttrs
-    (name: subpath: {
-      source = create_symlink "${dotfiles}/${subpath}";
-      recursive = true;
-    })
-    configs;
+    configFile =
+      builtins.mapAttrs
+      (name: subpath: {
+        source = create_symlink "${dotfiles}/${subpath}";
+        recursive = true;
+      })
+      configs;
   };
 }
-

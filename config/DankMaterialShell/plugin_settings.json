@@ -1,9 +1,0 @@
-{
-  "tailscale": {
-    "enabled": true,
-    "refreshInterval": 10
-  },
-  "bongoCat": {
-    "enabled": true
-  }
-}

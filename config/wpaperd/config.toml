@@ -1,7 +1,0 @@
-[default]
-duration = "15m"
-mode = "fit"
-sorting = "ascending"
-
-[any]
-path = "/home/tommy/walls/KawaiiWaifu/sketchy/"

@@ -17,9 +17,9 @@ local browser = "librewolf"
 --$menu = fuzzel "--launch-prefix=uwsm app --"
 local menu = "fuzzel --launch-prefix=app2unit"
 --local menu = "dms ipc call spotlight toggle"
-local powermenu = "dms ipc call powermenu toggle"
+--local powermenu = "dms ipc call powermenu toggle"
 local reload_waybar = "pkill waybar; waybar &"
-local snip = "grim -g \"$(slurp)\" - | swappy -f -"
+local snip = 'grim -g "$(slurp)" - | swappy -f -'
 
 --###################
 --## KEYBINDINGSS ###
@@ -36,7 +36,7 @@ hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 --bind = $mainMod, W, exec, uwsm app -- $browser
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("app2unit -- " .. browser))
 --hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd("dms ipc call wallpaper next"))
-hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd("wpaperctl next"))
+--hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd("wpaperctl next"))
 --bind = $mainMod Alt, W, exec, waypaper --random
 hl.bind(mainMod .. " + M", hl.dsp.exit())
 --bind = $mainMod, E, exec, [workspace 3] uwsm app -- $fileManager
@@ -47,7 +47,6 @@ hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))
 --hl.bind(mainMod .. " + P", hl.dsp.exec_cmd(powermenu))
---bind = $mainMod Alt, L, exec, hyprlock
 hl.bind(mainMod .. " + ALT + L", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mainMod .. " + S", hl.dsp.exec_cmd(snip))
 --hl.bind(mainMod .. " + TAB", hl.dsp.exec_cmd("dms ipc call hypr toggleOverview"))
@@ -88,26 +87,26 @@ hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 
 -- Opacity for inactive windows
 hl.window_rule({
-    match = {
-        float = 0,
-        focus = 0,
-    },
-    opacity = "0.9 0.9",
+	match = {
+		float = 0,
+		focus = 0,
+	},
+	opacity = "0.9 0.9",
 })
 
 hl.window_rule({
-    match = {
-        class = "^(blueman-manager)$",
-    },
-    float = true,
+	match = {
+		class = "^(blueman-manager)$",
+	},
+	float = true,
 })
 
 -- Open DMS windows as floating by default
 hl.window_rule({
-    match = {
-        class = "^(org.quickshell)$",
-    },
-    float = true,
+	match = {
+		class = "^(org.quickshell)$",
+	},
+	float = true,
 })
 
 -- GNOME apps
@@ -134,5 +133,3 @@ hl.bind(mainMod .. " + SHIFT + period", hl.dsp.layout("swapcol r"))
 hl.bind(mainMod .. " + SHIFT + comma", hl.dsp.layout("swapcol l"))
 hl.bind(mainMod .. " + SHIFT + L", hl.dsp.layout("colresize +conf"))
 hl.bind(mainMod .. " + SHIFT + H", hl.dsp.layout("colresize -conf"))
-
-hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd("dms ipc call keybinds toggle hyprland"))
