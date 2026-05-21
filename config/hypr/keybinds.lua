@@ -35,10 +35,11 @@ hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 --bind = $mainMod, W, exec, [workspace 2] uwsm app -- $browser
 --bind = $mainMod, W, exec, uwsm app -- $browser
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("app2unit -- " .. browser))
+hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("app2unit -- hyprpicker"))
 --hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd("dms ipc call wallpaper next"))
 --hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd("wpaperctl next"))
 --bind = $mainMod Alt, W, exec, waypaper --random
-hl.bind(mainMod .. " + M", hl.dsp.exit())
+--hl.bind(mainMod .. " + M", hl.dsp.exit())
 --bind = $mainMod, E, exec, [workspace 3] uwsm app -- $fileManager
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd("[workspace 3] app2unit -- " .. fileManager))
 --bind = $mainMod, T, exec, [workspace 4] uwsm app -- thunderbird

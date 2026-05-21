@@ -201,6 +201,7 @@ in
     thunderbird
     hyprlock # lockscreen
     hyprpolkitagent #polkit agent
+    hyprpicker #color picker
     awww #wallpaper
     swaynotificationcenter
     fastfetch
@@ -248,8 +249,10 @@ in
 
   programs.gnupg.agent = {
     enable = true;
-    enableSSHSupport = true;
+    enableSSHSupport = false;
   };
+
+  programs.ssh.startAgent = true;
 
   services.openssh = {
     enable = true;

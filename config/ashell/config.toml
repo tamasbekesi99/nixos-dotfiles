@@ -12,10 +12,6 @@ right = [ "Tray", "SystemInfo", [ "Privacy", "Settings" ], "CustomNotifications"
 #update_cmd = 'alacritty -e bash -c "paru; echo Done - Press enter to exit; read" &'
 #interval = 3600
 
-[osd]
-enabled = true   # Disabled by default; set to true to enable the OSD overlay
-timeout = 1500   # Auto-hide delay in milliseconds
-
 [workspaces]
 visibility_mode = "All"
 group_by_monitor = false
@@ -96,16 +92,16 @@ indicators = [ "IdleInhibitor", "PowerProfile", "Audio", "Microphone", "Bluetoot
 
 [appearance]
 
-style = "Islands"
+style = "Solid"
 font_name = "JetBrainsMono"
-opacity = 0.8
+opacity = 0.7
 
 
-primary_color = "#7aa2f7"
+primary_color = "#00cccc"
 success_color = "#9ece6a"
-text_color = "#00b3fe"
+text_color = "#00cccc"
 
-workspace_colors = [ "#7aa2f7", "#9ece6a" ]
+workspace_colors = [ "#00cccc", "#006666" ]
 
 [appearance.danger_color]
 base = "#f7768e"
@@ -117,7 +113,7 @@ weak = "#24273a"
 strong = "#414868"
 
 [appearance.secondary_color]
-base = "#0c0d14"
+base = "#006666"
 
 [appearance.menu]
 opacity = 0.7

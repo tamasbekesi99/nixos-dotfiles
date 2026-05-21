@@ -38,7 +38,7 @@ in {
     settings = {
       user.name = "tamasbekesi99";
       user.email = "bekesitommy@gmail.com";
-      init.defaultBranch = "main";
+      init.defaultBranch = "nixos-dotfiles";
       gpg.format = "ssh";
     };
   };
