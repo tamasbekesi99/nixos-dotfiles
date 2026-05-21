@@ -15,7 +15,8 @@ right = [ "Tray", "SystemInfo", [ "Privacy", "Settings" ], "CustomNotifications"
 [workspaces]
 visibility_mode = "All"
 group_by_monitor = false
-enable_workspace_filling = true
+enable_workspace_filling = false
+disable_special_workspaces = true
 
 [[CustomModule]]
 name = "CustomNotifications"
@@ -41,7 +42,7 @@ truncate_title_after_length = 100
 
 [system_info]
 indicators = [ "Cpu", "Memory" ]
-interval = 5
+interval = 10
 
 [system_info.cpu]
 warn_threshold = 60
