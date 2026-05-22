@@ -82,6 +82,7 @@ network_indicator_format = "Icon"
 vpn_indicator_format = "Icon"
 bluetooth_indicator_format = "Icon"
 brightness_indicator_format = "Icon"
+remove_idle_btn = true
 indicators = [ "IdleInhibitor", "PowerProfile", "Audio", "Microphone", "Bluetooth", "Network", "Vpn", "Battery", "Brightness" ]
 
 #[[settings.CustomButton]]
