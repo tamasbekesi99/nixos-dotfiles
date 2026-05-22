@@ -30,12 +30,12 @@
 
     iconTheme = {
       package = pkgs.flat-remix-icon-theme;
-      name = "Flat-Remix-Blue-Dark";
+      name = "Flat-Remix-Teal-Dark";
     };
 
     font = {
       name = "DejaVu Sans";
-      size = 12;
+      size = 14;
     };
   };
 
